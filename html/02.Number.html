@@ -1,10 +1,10 @@
 <script>
 	var a = Number.parseInt('1234.56'); // -> return Number (안에 숫자든 문자든 상관 없음) (버림)
 	var b = Number.parseFloat("1234.56"); // -> return Number
-	var c = b.toFixed(1); // -> retrun 문자열 (반올림) -> 중요!!
+	var c = b.toFixed(1); // -> retrun (문자열★★★★★★★★) (반올림) -> 중요!!
 	var d = new Number("1234.56"); // Number라는 객체에서 Instance생성
-	var d = Number("1234.56");  // Instance화가 아닌 바로 숫자 생성 -> 중요!!
-	console.log(a, b, c);
+	var e = Number("1234.56");  // Instance화가 아닌 바로 숫자 생성 -> 중요!!
+	console.log(a, b, c, d, e);
 
 	var e = 0/0;
 	var f = Number.isNaN(e); // return true || false -> NaN인지 아닌지 판별 (NaN은 숫자의 형태를 띄고 있지만 숫자가 아닌것) -> 수학적오류를 판별할 때 사용하는것
@@ -22,7 +22,7 @@
 	var h = Number.isInteger(100.23);
 	console.log(g, h);
 
-	console.log( // 개념정도만 상수값임! -> 자바스크립트가 처리할수 있는 최대, 최소 값
+	console.log( // 개념정도만 상수값임! -> 자바스크립트가 처리할수 있는 최대, 최소 값, (+) 무한, (-) 무한
 	Number.MAX_VALUE, //	Returns the largest number possible in JavaScript
 	Number.MIN_VALUE, //	Returns the smallest number possible in JavaScript
 	Number.POSITIVE_INFINITY, //	Represents infinity (returned on overflow)

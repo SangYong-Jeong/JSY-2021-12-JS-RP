@@ -17,14 +17,14 @@
 	- JSON
 	 */
 	// 함수 안에서 변수나 함수를 선언하면 외부에서 접근할 수 없다.(캡슐화) 
-	function a() { // this는 window -> 내 부모가 this이다. 함수나 변수를 전역으로 선언하면 window 객체안에 들어간다.
+	function a() { // this는 window -> 함수를 갖고 있는 객체가 this가 된다. 함수나 변수를 전역으로 선언하면 window 객체안에 들어간다.
 		var bb = null;
-		function aa() {
-			console.log(this); // 함수 안에 함수의 this는 위의 함수의 this를 따라감
+		var cc = function aa() {
+			console.log(this); // 함수 안에 함수의 this는 자신을 포함하고 있는 함수의 this를 따라감
 		}
-		aa();
+		cc();
 		console.log(this);
-		// this는 this가 포함된 함수의 대상을 지칭한다.
+		// this는 this가 포함된 함수의 대상을 지칭한다. (이벤트 는 함수를 이벤트 대상에게 종속시키기 때문에 이벤트시 실행되는 콜백함수의 this는 이벤트 대상인 것이다.)
 	}
 	a();
 	var b = null;
@@ -37,10 +37,9 @@
 	function Car (_name, _color) { // 안에 인자들을 생성자라 부른다. 
 		this.name = _name;  // 여기에 들어가는 것들은 전부다 속성이다. 동작은 메서드로 분리
 		this.color = _color;
-		this.b = function () {
-			console.log(this);
-			// 여기서의 this는 객체 자체다.
-		}
+		this.b = function () { // 이건 method가 아님 -> 속성 값 안에 함수를 준 것일 뿐이다.
+			console.log(this); 	// 여기서의 this는 생성자 객체 자체다. (function Car는 JS특성상 함수처럼 보이지만 Instance들을 생성하는 하나의 객체(클래스)로 보는 것이 맞다. 따라서 this는 생성자 객체인 Car가 된다.) 객체 안의 this는 해당 객체를 가리키기 때문이다.
+		} // 생성자객체 안에 변수나 함수를 선언하기만 한 경우 외부에서 접근 할 수 없다. (그냥 외부에서 접근할 수 없는 내용들을 instance안에 넣어놓은 것이다.) 
 	}
 	Car.prototype.drive = function () { // method 선언
 		console.log(this.name +'이(가) 달립니다.');
@@ -49,21 +48,23 @@
 	var car = new Car('붕붕이', '흰색'); // 객체의 Instance 생성 - this는 인스턴스의 대상이 된다.
 	console.log(car.name);
 	console.log(car.color);
-	car.b();
+	car.b();     // 메서드 아님 변수안에 담긴 함수 실행 (property)
+	car.drive(); // 이것이 메서드이다.
+
 
 	// ES6의 객체생성
 	class Car2 {
 		constructor(_name, _color) { // property 선언 (객체를 만들어낼 떄 한 번 실행되는 함수)
 			this.name = _name;
 			this.color = _color;
-			this.b = 'A'; // 객체의 전역변수
+			this.b = 'A'; // 객체의 전역변수 (왜냐하면 생성되는 instance 전부에게 똑같은 값이 들어가기 때문이다. 물론 외부에서 접근 가능한 값이므로 수정은 가능하다.)
 		}
 		drive() { // method 선언
 			console.log(this.name +'이(가) 달립니다.');
 		}
 	}
 
-	var car2 = new Car2('방방이', '검은색'); 
+	var car2 = new Car2('방방이', '검은색');  // Instance 생성은 new를 붙인다. 이건 ES5, ES6 둘 다 동일하다.
 	console.log(car2.name);
 	console.log(car2.color);
 	car2.drive();
