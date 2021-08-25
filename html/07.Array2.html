@@ -1,0 +1,140 @@
+<script>
+/*
+// 문제1. 국어점수가 60점 이상인 학생을 찾으시오.
+var student = [];
+for(var i=0; i < students.length; i++) {
+	student.push(students[i]);
+}
+console.log(student);
+var result = student.filter(function(v) {
+	return v.kor>=60;
+})
+console.log(result);
+// 문제2. 국어점수와 영어점수가 60점 이상인 학생을 찾으시오.
+var result2 = student.filter(function(v) {
+	return v.kor>=60 && v.eng>=60;
+})
+console.log(result2);
+// 문제3. 국어점수와 영어점수가 60점 이상인 30세 이상의 학생을 찾으시오.
+var result3 = student.filter(function(v) {
+	return v.kor>=60 && v.eng>=60 && v.age >= 30;
+})
+console.log(result3);
+*/
+
+
+	/**
+	 * 배열의 반복메서드
+	 * arr.forEach(function(v, i) {}) -> return undefined
+	 * arr.every(fn)    // 검증       
+	 * arr.some(fn)     // 검증                        
+	 * arr.filter(fn)   // 검증       
+	 * arr.map(fn)      // 검증          
+	 */
+
+// forEach: return undefined
+// arr.forEach(function (값, 인덱스, 배열자신) {}
+var arr = ['A', 'B', 'C'];
+/* console.log(
+	arr.forEach(function (v, i, a) {
+	console.log(value, index, array ,this); // this는 window
+})
+); */
+
+// every: return Boolean(true, false) -> 모든 요소가 true여야 true를 return
+// 모든 요소를 순회하면서 리턴값이 하나라도 false이면 false 리턴, 모든 요소가 true여야 true 리턴
+var arr = [60, 70, 50, 30, 60, 100];
+var result = arr.every(function(v) {
+	return v >= 60;
+});
+console.log(result);
+
+// some: return Boolean(true, false) -> 모든 요소중 하나라도 true면 true를 return
+// 모든 요소를 순회하면서 리턴값이 하나라도 ture이면 true 리턴, 모든 요소가 false여야 false 리턴
+var arr = [60, 70, 50, 30, 60, 100];
+var result = arr.some(function(v) {
+	return v === 100;
+});
+console.log(result);
+
+// ★★★★★★★
+// filter: return Array -> 배열을 순회하면서 조건에 맞는 요소만 return(결과는 새로운 배열에 담는다.) -> filter는 전체를 리턴
+var arr = [60, 70, 50, 30, 60, 100];
+var result = arr.filter(function(v) {
+	return v >= 60;
+});
+console.log(result);
+
+console.clear();
+// 학생데이터가 아래와 같이 있습니다.
+var students = [
+	{id: 1, name: '홍길동', age: 19, kor: 90, eng: 80},
+	{id: 2, name: '홍길만', age: 25, kor: 80, eng: 65},
+	{id: 3, name: '홍길순', age: 32, kor: 100, eng: 55},
+	{id: 4, name: '별주부', age: 96, kor: 85, eng: 88},
+	{id: 5, name: '구운몽', age: 23, kor: 75, eng: 89},
+	{id: 6, name: '임꺽정', age: 45, kor: 55, eng: 99},
+	{id: 7, name: '이순신', age: 55, kor: 35, eng: 72},
+	{id: 8, name: '김선달', age: 35, kor: 95, eng: 45},
+]
+// 문제1. 국어점수가 60점 이상인 학생을 찾으시오.
+var kor60;
+kor60 = students.filter(function(v) {
+	// return v;
+	return v.kor >= 60; // (true or false) true이면 해당 배열의 el을 리턴, 조건만 적는다.
+});
+console.log(kor60);
+
+// 문제2. 국어점수와 영어점수가 60점 이상인 학생을 찾으시오.
+var korEng60;
+korEng60 = students.filter(function(v) {
+	// return v;
+	return v.kor >= 60 && v.eng>=60; // (true or false) true이면 해당 배열의 el을 리턴, 조건만 적는다.
+});
+console.log(korEng60);
+
+// 문제3. 국어점수와 영어점수가 60점 이상인 30세 이상의 학생을 찾으시오.
+var age30;
+age30 = students.filter(function(v) {
+	// return v;
+	return v.kor >= 60 && v.eng>=60 && v.age>=30; // (true or false) true이면 해당 배열의 el을 리턴, 조건만 적는다.
+});
+console.log(age30);
+
+// 문제3. 국어점수와 영어점수가 60점 이상인 홍씨를 찾으시오.
+var hong60;
+hong60 = students.filter(function(v) {
+	// return v;
+	// return v.kor >= 60 && v.eng>=60 && v.name.includes('홍'); // (true or false) true이면 해당 배열의 el을 리턴, 조건만 적는다.  (ES6)
+	return v.kor >= 60 && v.eng>=60 && v.name.indexOf('홍') > -1; // (true or false) true이면 해당 배열의 el을 리턴, 조건만 적는다.  (ES5)
+});
+console.log(hong60);
+
+// ★★★★★★★
+// map: return Array -> 배열을 순회하면서 변경된 요소를 return(결과는 새로운 배열에 담는다.) -> filter와 다르게 부분만 리턴 가능
+console.clear();
+// 문제1. 국어점수가 60점 이상인 학생을 찾으시오.
+// var totla60 = students.map(function(v) { // true/ false 리턴 x -> 배열을 순회하면서 작업을 하고 원하는 데이터만 추출해내는 기능
+// 	v.total = v.kor + v.eng;
+// 	// return v;
+// 	return v.total;
+// });
+// console.log(total60);
+
+// ★★★★★
+// reduce: Any => 배열을 순회하면서 누산결과를 리턴 -> 누산한 결과를 리턴한다.
+var arr = [1,2,3,4,5,6,7,8,9,10];
+var result = arr.reduce(function(acc, current, i) {
+	return acc + current; // prev + current -> current의 값으로 들어감
+}, 0); // initial value (기본값 : 0)
+console.log(result);
+
+
+// 문제1. 모든 학생의 국어점수 총점을 구하시오.
+var result = students.reduce(function(acc, current, i) { // 객체에서 뽑아낼때는 첫 값을 추출할 수 없으므로 초깃값을 설정해줘야한다. (숫자인 경우에는 상관이없다.) -> 객체의 연산을 할 때에는 map을 쓰는게 편하다.
+	return acc + current.kor; // current.kor 써도 될듯 (쉬는 시간에 해보자)
+}, 0);
+console.log(result);
+
+
+</script>
