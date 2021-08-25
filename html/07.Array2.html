@@ -133,7 +133,7 @@ console.log(result);
 // 문제1. 모든 학생의 국어점수 총점을 구하시오.
 var result = students.reduce(function(acc, current, i) { // 객체에서 뽑아낼때는 첫 값을 추출할 수 없으므로 초깃값을 설정해줘야한다. (숫자인 경우에는 상관이없다.) -> 객체의 연산을 할 때에는 map을 쓰는게 편하다.
 	return acc + current.kor; // current.kor 써도 될듯 (쉬는 시간에 해보자)
-}, 0);
+}, 0); // initialValue 설정 한 경우와 하지 않은경우 어떻게 작동 되는지 스크린샷 따놨으니 정상요_수업 폴더에서 확인하면 됨
 console.log(result);
 
 
