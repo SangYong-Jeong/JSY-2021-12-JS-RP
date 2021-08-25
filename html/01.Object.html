@@ -1,0 +1,71 @@
+<body style="height: 200px;">
+	
+
+<script>
+	/* 
+	1. 자바스크립트 내장 객체
+	- Window(최상위 객체) 
+		- document
+		- navigator ...
+		- console
+	- Object
+	- Number
+	- String
+	- Array
+	- Math
+	- Date
+	- JSON
+	 */
+	// 함수 안에서 변수나 함수를 선언하면 외부에서 접근할 수 없다.(캡슐화) 
+	function a() { // this는 window -> 내 부모가 this이다. 함수나 변수를 전역으로 선언하면 window 객체안에 들어간다.
+		var bb = null;
+		function aa() {
+			console.log(this); // 함수 안에 함수의 this는 위의 함수의 this를 따라감
+		}
+		aa();
+		console.log(this);
+		// this는 this가 포함된 함수의 대상을 지칭한다.
+	}
+	a();
+	var b = null;
+	console.log(window); // 함수나 변수를 선언하는 것은 window 객체에 들어간다는 의미, 함수안에 함수를 선언하는경우에는 캡슐화 되어서 보이지 않는다. (외부에서 접근 불가)
+
+	// 여기서는 document가 대상이다.
+	document.addEventListener('click', function() {console.log(this);}); // -> 여기서의 this는 이벤트 대상인 document(대상)
+
+	// ES5의 객체생성
+	function Car (_name, _color) { // 안에 인자들을 생성자라 부른다. 
+		this.name = _name;  // 여기에 들어가는 것들은 전부다 속성이다. 동작은 메서드로 분리
+		this.color = _color;
+		this.b = function () {
+			console.log(this);
+			// 여기서의 this는 객체 자체다.
+		}
+	}
+	Car.prototype.drive = function () { // method 선언
+		console.log(this.name +'이(가) 달립니다.');
+	}
+
+	var car = new Car('붕붕이', '흰색'); // 객체의 Instance 생성 - this는 인스턴스의 대상이 된다.
+	console.log(car.name);
+	console.log(car.color);
+	car.b();
+
+	// ES6의 객체생성
+	class Car2 {
+		constructor(_name, _color) { // property 선언 (객체를 만들어낼 떄 한 번 실행되는 함수)
+			this.name = _name;
+			this.color = _color;
+			this.b = 'A'; // 객체의 전역변수
+		}
+		drive() { // method 선언
+			console.log(this.name +'이(가) 달립니다.');
+		}
+	}
+
+	var car2 = new Car2('방방이', '검은색'); 
+	console.log(car2.name);
+	console.log(car2.color);
+	car2.drive();
+</script>
+</body>

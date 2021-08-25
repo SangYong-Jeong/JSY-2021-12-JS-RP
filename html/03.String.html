@@ -1,0 +1,126 @@
+<script>
+	// char : 문자(글자하나)
+	// string : 문자열
+	// js는 문자열과 문자를 구분하지 않는다. 전부 string 객체이다.
+
+	// indexOf('찾을문자열', 찾기 시작할 idx); -> return Number
+	var a = 'H';            // 문자열(String)
+	var b = 'Hello World';  // 문자열(String)
+	console.log(
+		b.charAt(0), // idx 기준으로 char 뽑아내기
+		b.length, // 공백도 length에 포함한다.
+		b.indexOf('l', 2), // 처음만나는 문자열만 튀어나온다. -> 뒤에 숫자는 indexOf가 실행되는 시작지점을의미한다. // indexOf는 찾는게 index 자리에 없으면 -1 이 나온다.
+	);
+	// 내가 짠거
+	function findChar(str, search) {
+		var a = 0;
+		var b = 0;
+		for(var i=0; i < str.length; i++) {
+			a = str.indexOf(search, i) 
+			if(i >= a) {
+				b++ 
+				i++
+				break;
+			}
+		}
+		if(str.indexOf(search, i) >= i){
+			for(; i < str.length; i++) {
+				a = str.indexOf(search, i) 
+				if(i >= a) {
+					b++ 
+					i++
+					break;
+				}
+			}
+		}
+		if(str.indexOf(search, i) >= i) {
+			for(; i < str.length; i++) {
+				a = str.indexOf(search, i) 
+				if(i >= a) {
+					b++ 
+					i++
+					break;
+				}
+			}
+		}
+		return b; 
+}
+var c = 'r';
+console.log(findChar(b, c));
+console.log(b);
+
+// ES6 indexOf() -> 지금 사용하기 위해서는 polyfill 필요! (익스플로러에서 안 돌아감)
+	var a = 'H';            // 문자열(String)
+	var b = 'Hello World';  // 문자열(String)
+	console.log(
+		b.includes('l'), // 찾았다는 이야기 -> return true || false  -> 배열에서 사용가능 (match 도 같은 기능의 메서드)
+		b.includes('l', 0), // 찾았다는 이야기 숫자는 시작 index -> return true || false -> 이렇게 하면 indexOf() -1 대신 이용 가능
+		b.startsWith('H'), // 시작 char가 맞는지 아닌지 return true || false
+		b.endsWith('d'), // 끝나는 char가 맞는지 아닌지 return true || false
+	);
+
+	// replace('찾을 문자열', '바꿀 문자열')  -> return String
+	var c = 'Hello Booldook';
+	console.log(
+		c.replace('He', 'De'), // 앞에것은 교체될항목, 뒤에것은 교체할 항목
+	);
+
+	// substr('시작idx', '갯수'), substring('시작idx', '마지막idx(직전까지)'); -> return String
+	var dt = '2021-08-25 11:22:33';
+	console.log(
+		dt.substr(0, 10),   // 2021-08-25
+		dt.substr(11, 2),   // 11
+		dt.substring(11, 13), // 11
+	)
+
+	// split('구분할 문자열'); -> retrun Array[문자열인] -> 중요!!!!
+	var tel = '010-1111-2222';
+	var telArr = tel.split('-');
+	console.log(telArr);
+
+	var cart = '10^2#11^1#15^3#30^2'; // -> data를 핸들링 할 때 자주 쓰는 method
+	var cartArr = cart.split('#');
+	var myCart = [];
+	var myCart2 = [];
+	for(var i=0; i < cartArr.length; i++) {
+		myCart[i] = cartArr[i].split('^'); // 배열안에 배열이 담기는 2차원 배열 형태
+		myCart2[0] = { productId: myCart[i][0], count: myCart[i][1] }; // 2차원배열을 객체로 보기 편하게 만들어놓는것
+	}
+	console.log(
+		cartArr,
+		myCart,
+		myCart[1][1],
+		myCart2
+		);
+
+		// str.toLowerCase(), -> str을 소문자로
+		// str.toUpperCase(); -> str을 대문자로...
+
+		// str.concat(st2) -> str1 + str2; ->문자열을 합치는 기능
+		var a = 'Hello ', b = 'World';
+		console.log(a.concat(b) );
+	
+	// str.trim() -> '   가나다      ' -> 양쪽 공백을 짤라내주는 메서드 -> retrun '가나다'
+
+	console.log(
+		String(123),
+		String(true),
+		String(undefined),
+		String(null),
+		String(NaN),
+		); // -> 문자열로 만들어주는 함수
+
+	var immutables = [];
+	var str = 'apple, banana, kiwi';
+	immutables.push(str);
+	var str2 = str.substr(7, 6);
+	immutables.push(str2);
+
+	console.log(str, str2, immutables);
+	// 불변성이 있어야 histroy를 파악할 수 있게 된다. 
+	//let str = "Apple, Banana, Kiwi";
+	//str.slice(7, 13)     // Returns Banana -> slice 메서드는 불변성을 해친다. 메서드 실행시 str이라는 변수가 변해버리기 때문이다.
+
+	let text = "HELLO WORLD"; 
+	text[0]                   // returns H -> 이게 되는 이유는 그냥 문자열도 new String()을 통해 나온거랑 같은 Instance이기 때문이다.
+</script>
