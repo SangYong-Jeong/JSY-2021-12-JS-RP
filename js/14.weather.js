@@ -1,12 +1,12 @@
 // 7f65332e6d33816b773f35daec5e2d44
 // https://api.openweathermap.org/data/2.5/weather?q=seoul&appid=7f65332e6d33816b773f35daec5e2d44&units=metric
+// https://openweathermap.org/img/wn/10d@2x.png
 
 // ? 문제 1. ../json/city.list.json의 모든 데이터를 cityList:Array에 담으시오.
-// $.ajax, axios, XMLHttpRequest 셋 중에 하나를 선택하시오.
-
+// ? .ajax, axios, XMLHttpRequest 셋 중에 하나를 선택하시오.
 // ? 문제 2. 가져온 데이터에서 한국의 정보만을 korCity:Array에 담으시오.
 // ? 문제 3. korCity에서 {도시이름 name, 위도 lat, 경도 lon, 아이디 id} 객체를 city:Array에 담으시오. 
-
+/* 
 var cityList = [];
 // axios
 axios.get('../json/city.list.json').then(onResult);
@@ -27,5 +27,58 @@ function onResult(v) {
 		return v.city
 	}) 
 	console.log(city);
+} */
+
+navigator.geolocation.getCurrentPosition(onCoordSuccess, onCoordError);
+
+function onCoordSuccess(r) {
+	let {latitude: lat, longitude: lon} = r.coords;
+	console.log(lat, lon)
 }
+
+function onCoordError(err) {
+	// 1835848
+	console.log(err);
+}
+
+// navigator.clipboard.writeText("<Hello World>").then(() => {
+// 	console.log('카피되었습니다.');
+// })
+
+/************* Global init ***************/
+const appid = '7f65332e6d33816b773f35daec5e2d44';
+const url = 'https://api.openweathermap.org/data/2.5/weather';
+const icons =  ['https://openweathermap.org/img/wn/', '@2x.png'];
+const param = {units: 'metric', appid};
+
+
+
+/************* user function *************/
+function init() {
+	navigator.geolocation.getCurrentPosition(onCoordSuccess, onCoordError);
+
+	function onCoordSuccess(r) {
+	let {latitude: lat, longitude: lon} = r.coords;
+	axios.get(url, {params: {...param, lat, lon} }).then(onGetWeather).catch(onError);
+	}
+
+	function onCoordError(err) {
+		axios.get(url, {params: {...param, id: '183548'} }).then(onGetWeather).catch(onError);
+	}
+}
+
+/************* event callback ************/
+function onGetWeather(r) {
+	console.log(r.data);
+}
+
+function onError(err) {
+	console.log(err);
+}
+
+/************* event init ****************/
+
+
+/************* start init ****************/
+init();
 
