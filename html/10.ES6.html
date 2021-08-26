@@ -1,15 +1,21 @@
 <script>
-	// ES6 (정말중요!!!!!!!!!!!!!!★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★)
-	// spread operator
+	// ES6 달라진 점 
+	// - 펼침연산자, 구조분해할당(구:비구조화할당), class, String 추가된 메서드
+	// - Set, Map, WeakSet, WeakMap, Object 추가된 메서드(entries, keys, values)
+	// - for ~ of
+	// - 추가된 함수선언문 => Arrow Function (람다표현식)
+	// - 추가된 변수 선언 => const(상수), let
 
+	// ES6 (정말중요!!!!!!!!!!!!!!★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★)
+	// ES6 spread operator (펼침연산자)
 	var fruits = ['Apple', 'Banana', 'Cherry'];
 	var fruits2 = ['Water Melon', 'Melon', 'Orange'];
 	var fruits3 = fruits.concat(fruits2);
 	console.log(fruits3);
 
 	// 문제 1 fruits2를 fruits의 Banana 뒤에 합치시오.
-	fruits.splice(2, 1);
-	var fruits4 = fruits.concat(fruits2);
-	fruits4.push('Cherry');
-	console.log(fruits4);
+	var newFruits = fruits.slice();
+	// newFruits.splice(1, 0, fruits2[0], fruits2[1], fruits2[2]);
+	newFruits.splice(1, 0, ...fruits2);
+	console.log(newFruits);
 </script>
