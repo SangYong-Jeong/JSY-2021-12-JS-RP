@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>var/let</title>
+</head>
+<body>
+	<!-- ul>li*5{i} -->
+	<h1>값: <span></span></h1>
+	<ul style="font-size: 30px;">
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+	</ul>
+	<script>
+		const li = document.querySelectorAll('li');
+		for(let i = 0; i < li.length; i++) { // let i = 0, let i = 1 ... let i = n -> for문안에 let이 갇혀서 for문안에 실행된느게 n개 생긴다고 보면된다.
+			li[i].addEventListener('click', function() {
+				console.log(i);
+				document.querySelector('h1 span').innerText = li[i].innerText;
+			});
+		}
+		// i = 5;
+		// =======================
+		
+		// 비 순수함수
+		var k = 10;
+		function hap() {
+			return a + b + k;
+		}
+		console.log(hap(10, 20)); // 40
+		k = 20;
+		console.log(hap(10, 20)); // 50
+
+		// 순수함수란? 어떠한 상황(외부상황)에서도 값이 변하지 않는다.
+		// 순수함수
+		function sum(a,b) {
+			return a + b;
+		}
+
+		// 1급함수 closure함수, 순수함수
+		function add10 (n) {
+			var a = 10;
+			return function() {
+				return a + n; 
+			}
+		}
+
+		var b = add10(30);
+		var c = add10(40);
+		console.log(b());
+		console.log(c());
+	</script>
+</body>
+</html>
