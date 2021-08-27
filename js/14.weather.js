@@ -6,7 +6,7 @@
 // ? .ajax, axios, XMLHttpRequest 셋 중에 하나를 선택하시오.
 // ? 문제 2. 가져온 데이터에서 한국의 정보만을 korCity:Array에 담으시오.
 // ? 문제 3. korCity에서 {도시이름 name, 위도 lat, 경도 lon, 아이디 id} 객체를 city:Array에 담으시오. 
-
+/* 
 var cityList = [];
 // axios
 axios.get('../json/city.list.json').then(onResult);
@@ -26,6 +26,7 @@ function onResult(v) {
 	}) 
 	console.log(city);
 }
+ */
 
 navigator.geolocation.getCurrentPosition(onCoordSuccess, onCoordError);
 
@@ -74,7 +75,9 @@ function onGetWeather(r) {
 	let {main: title, description, icon} = weather[0];
 	const $wrap = $('.weather-wrap');
 	$wrap.find('.city span').text(name);
-	$wrap.find('.img-wp img').attr('src', icons[0]+icon+icons[1]);
+	let html = `<img src="${icons[0]+icon+icons[1]}" alt="${icon}" class="w100">`;
+	$wrap.find('.img-wp').html(html);
+	//$wrap.find('.img-wp img').attr('src', icons[0]+icon+icons[1]);
 	$wrap.find('.temp-wp span').text(temp);
 	$wrap.find('.desc-wp .main').text(title);
 	$wrap.find('.desc-wp .description').text(description);
