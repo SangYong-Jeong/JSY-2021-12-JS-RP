@@ -6,14 +6,12 @@
 // ? .ajax, axios, XMLHttpRequest 셋 중에 하나를 선택하시오.
 // ? 문제 2. 가져온 데이터에서 한국의 정보만을 korCity:Array에 담으시오.
 // ? 문제 3. korCity에서 {도시이름 name, 위도 lat, 경도 lon, 아이디 id} 객체를 city:Array에 담으시오. 
-/* 
+
 var cityList = [];
 // axios
 axios.get('../json/city.list.json').then(onResult);
 
 function onResult(v) {
-	console.log(v);
-	console.log(v.data)
 	for(var i = 0; i < v.data.length; i++) {
 		cityList.push(v.data[i]);
 	}
@@ -27,7 +25,7 @@ function onResult(v) {
 		return v.city
 	}) 
 	console.log(city);
-} */
+}
 
 navigator.geolocation.getCurrentPosition(onCoordSuccess, onCoordError);
 
@@ -69,8 +67,10 @@ function init() {
 
 /************* event callback ************/
 function onGetWeather(r) {
+	console.log(r);
 	let {main, name, weather} = r.data;
 	let {temp} = main;
+	// let [{main: title, description, icon}] = weather; // 이렇게도 구조분해 할당을 할 수 있다. check
 	let {main: title, description, icon} = weather[0];
 	const $wrap = $('.weather-wrap');
 	$wrap.find('.city span').text(name);

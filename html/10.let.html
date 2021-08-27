@@ -21,7 +21,7 @@
 		for(let i = 0; i < li.length; i++) { // let i = 0, let i = 1 ... let i = n -> for문안에 let이 갇혀서 for문안에 실행된느게 n개 생긴다고 보면된다.
 			li[i].addEventListener('click', function() {
 				console.log(i);
-				document.querySelector('h1 span').innerText = li[i].innerText;
+				document.querySelector('h1 span').innerText = li[i].innerText; // 전역변수로 i를 설정하면 나중에 콜백이 실행될때 전역변수인 i가 5가되어 있으므로 이상해진다.
 			});
 		}
 		// i = 5;
@@ -29,7 +29,7 @@
 		
 		// 비 순수함수
 		var k = 10;
-		function hap() {
+		function hap(a, b) {
 			return a + b + k;
 		}
 		console.log(hap(10, 20)); // 40
@@ -52,6 +52,8 @@
 
 		var b = add10(30);
 		var c = add10(40);
+		console.log(b); // 함수가 리턴되는 시점에 함수 안에 a값 n값이 다들어가 있는 상태
+		console.log(c);
 		console.log(b());
 		console.log(c());
 	</script>
