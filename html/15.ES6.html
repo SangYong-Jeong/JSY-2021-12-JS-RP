@@ -9,9 +9,11 @@
 		lastName: '홍',
 		firstName: '길동',
 		fullName() {
-			return `${firstName} ${lastName}`;
+			return `${this.lastName} ${this.firstName}`;
 		}
 	}
+
+	// iterable이 아닌 Object는 반복문을 돌릴 수 없다. 
 for(let v of Object.keys(obj)) {
 	console.log(v);
 }
@@ -37,19 +39,20 @@ map.delete('key') // 삭제
 map.clear() // 모두삭제
 map.size // 요소의 갯수
 
-map.set('firstName', '길동');
+map.set('firstName', '길동');  // map은 value값은 중복 가능하지만 key값은 중복이 안된다.
 map.set('lastName', '홍');
 map.set('fullName', () => { return this });
 console.log(map);
 console.log(map.get('firstName'));
 console.log(map.get('lastName'));
+console.log(map.get('fullName'));
 console.log(map.get('fullName')());
 console.log(map.has('firstName') ? true : false); // has(key)
 console.log(map.delete('fullName')); // 삭제되면 true, 삭제실패 false
 // console.log(map.clear()); // undefined
 console.log(map.size);
 
-map.forEach((v, k, a) => {
+map.forEach((v, k, a) => { // map에 들어간 순서대로 값(v)이 나온다. 일반적인 Object에는 순서가 존재하지 않는다.
 	console.log(v, k, a);
 });
 
@@ -72,13 +75,17 @@ console.log(set);
 set.add('hong');
 set.add('hong2');
 console.log(set.has('hong'));
-for(let v of set) {
+for(let v of set) { // set도 들어간 순서대로 값이 나온다.
 	console.log(v);
 }
 
-const map2 = new Map();
+// WeakMap, WeakSet은 객체만 키값으로 넣을수 있고 키값에 해당하는 객체가 사라지면 자동으로 WeakMap과 WeakSet에서 사라지게 만든다.
+const map2 = new Map(); // map의 키값으로 문자, 숫자, 함수, 배열 ... 다양하게 넣을 수 있다.
 map2.set(1, 1);
 map2.set(function() {}, 1);
 map2.set([], 1);
+map2.set({}, 1);
+map2.set(true, 1);
+map2.set(undefined, 1);
 console.log(map2);
 </script>

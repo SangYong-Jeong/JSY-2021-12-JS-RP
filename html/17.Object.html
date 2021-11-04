@@ -5,7 +5,7 @@
 			this.firstName = _firstName;
 			this.lastName = _lastName;
 		}
-		getFullName () { // ES5의 prototype
+		getFullName () { // ES5의 prototype과 같다.
 			return `${this.lastName} ${this.firstName}`;  
 		}
 	}
@@ -18,8 +18,8 @@
 	const human = {
 		firstName: '',
 		lastName: '',
-		getFullName() { // 리터럴 객체의 메서드?
-			return `${this.lastName} ${this.firstName}`;  
+		getFullName() { // 리터럴 객체의 메서드가 맞다. 객체안에 들어가는 값은 다 프라퍼티지만 프라퍼티인데 함수인 놈을 객체라고 보는것이다.
+			return `${this.lastName} ${this.firstName}`; // 여기서 this는 메서드의 주인인 human
 		}
 	}
 

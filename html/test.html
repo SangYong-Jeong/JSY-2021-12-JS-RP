@@ -1,0 +1,37 @@
+<script>
+  var a = 'hi';
+  function Car(_name, _color) {
+    this.name = _name;
+    this.color = _color;
+  }
+  Car.hi = 'hi';
+  var { hi } = Car;
+  function as() {
+    const hihi = 'hihi';
+    Car.prototype.Info = function () {
+      console.dir(Car.prototype.Info);
+      return hi + hihi;
+    };
+    function asd() {
+      console.dir(asd);
+    }
+    console.dir(Car.prototype.Info);
+    console.dir(asd);
+  }
+  as();
+  car = new Car('붕붕이', 'red');
+  console.log(car);
+  console.log(car.Info());
+  console.dir(Car);
+  console.log(window.hi);
+  console.log(window);
+
+  function abc() {
+    const gallery = 'gallery';
+    function abd() {
+      console.log(gallery);
+    }
+    console.dir(abd);
+  }
+  abc();
+</script>
