@@ -34,4 +34,22 @@
     console.dir(abd);
   }
   abc();
+
+  var kiki = {
+    set() {
+      var ki = 'ki';
+      return function set2() {
+        return ki;
+      };
+    },
+    get() {
+      var ki = 'ki2';
+      return function get2() {
+        return ki;
+      };
+    },
+  };
+
+  console.dir(kiki.set()());
+  console.dir(kiki.get()());
 </script>
