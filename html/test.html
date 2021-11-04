@@ -52,4 +52,18 @@
 
   console.dir(kiki.set()());
   console.dir(kiki.get()());
+  for (
+    let i = function () {
+        let c = 123123;
+        return function ii() {
+          return c;
+        };
+      },
+      j = 0;
+    j < 1;
+    j++
+  ) {
+    console.dir(i());
+    console.log(j);
+  }
 </script>
