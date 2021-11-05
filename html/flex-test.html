@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test</title>
+    <style>
+      .flex-box {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .flex-box2 {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .flex-item1 {
+        width: 100%;
+      }
+      .flex-item2 {
+        width: 100%;
+      }
+      .flex-item3 {
+        width: 100%;
+      }
+      .flex-item4 {
+        width: 100%;
+      }
+      .flex-item5 {
+        width: 100%;
+      }
+      .flex-item6 {
+        width: 100%;
+      }
+    </style>
+    <script src="../js/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="flex-box">
+      <a class="flex-item1">flex-item1</a>
+      <section class="flex-item3">flex-item2</section>
+      <div class="flex-item2">flex-item3</div>
+    </div>
+    <div class="flex-box2">
+      <a class="flex-item4">flex-item4</a>
+      <button class="flex-item6">flex-item5</button>
+      <div class="flex-item5">flex-item6</div>
+    </div>
+    <script>
+      // console.log(document.querySelector('.flex-box').style.display);
+      // console.log(document.querySelector('.flex-item').style.display);
+      console.log($('.flex-box').css('display'));
+      console.log($('.flex-item1').css('display'));
+      console.log($('.flex-item2').css('display'));
+      console.log($('.flex-item3').css('display'));
+      // flex-box의 경우에는 display: flex
+      // flex-items의 경우에는 display: block (따라서 margin, padding 어떤것도 다 먹게된다. 기존에 무슨 display를 가졌었는지와 상관 없이 무조건 block이 된다 )
+    </script>
+  </body>
+</html>
