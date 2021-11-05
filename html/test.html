@@ -22,6 +22,7 @@
   car = new Car('붕붕이', 'red');
   console.log(car);
   console.log(car.Info());
+  console.dir(car.Info);
   console.dir(Car);
   console.log(window.hi);
   console.log(window);
@@ -66,4 +67,16 @@
     console.dir(i());
     console.log(j);
   }
+
+  function ret() {
+    return (kl = kll = 2);
+  }
+
+  console.log(ret());
+
+  const today = new Date();
+  const x = today.getTimezoneOffset(); // -9
+
+  console.log(today); // Thu May 16 2019 17:58:13 GMT+0900 (한국 표준시)
+  console.log(x);
 </script>
