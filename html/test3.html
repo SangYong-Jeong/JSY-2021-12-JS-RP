@@ -1,0 +1,21 @@
+<script>
+  const targetStr = '1a2345';
+
+  // 모두 숫자인지 검사
+  // [^]: 부정(not)을 의미한다. 얘를 들어 [^a-z]는 알파벳 소문자로 시작하지 않는 모든 문자를 의미한다.
+  // [] 바깥의 ^는 문자열의 처음을 의미한다.
+  const regexr = /^\d+/;
+  const regexr2 = /\d+$/;
+  const regexr3 = /^\d+$/;
+
+  console.log(targetStr.match(regexr));
+  console.log(targetStr.match(regexr2));
+  console.log(targetStr.match(regexr3));
+  console.log(regexr.test(targetStr));
+  console.log(regexr2.test(targetStr));
+  console.log(regexr3.test(targetStr));
+
+  const targetStr2 = 'abbbbbbbbBbbc';
+  const regexr4 = /ab+c/gi;
+  console.log(targetStr2.match(regexr4));
+</script>
