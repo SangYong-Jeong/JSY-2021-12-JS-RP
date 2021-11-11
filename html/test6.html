@@ -1,0 +1,24 @@
+<script>
+  const arr = [];
+  console.log(arr[0]); // undefined
+
+  arr[1] = 2;
+  arr[3] = 4;
+  for (let v of arr) {
+    console.log(v);
+  }
+  console.log(arr); // (4) [empty, 1, empty, 3]
+  console.log(arr.lenth); // 4
+  // 값이 할당되지 않은 인덱스 위치의 요소는 생성되지 않는다.
+  console.log(Object.keys(arr)); // [ '1', '3' ]
+  console.log(Object.values(arr)); // [ '1', '3' ]
+
+  // arr[0]이 undefined를 반환한 이유는 존재하지 않는 프로퍼티에 접근했을 때 undefined를 반환하는 것과 같은 이치다.
+  console.log(arr[0]); // undefined
+
+  const numbersArr = ['zero', 'one', 'two', 'three'];
+
+  // 요소의 값만 삭제된다
+  delete numbersArr[2]; // (4) ["zero", "one", empty, "three"]
+  console.log(numbersArr);
+</script>

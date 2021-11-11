@@ -1,0 +1,44 @@
+<script>
+  // 문자열은 이터러블이다.
+  const arr1 = Array.from('Hello');
+  console.log(arr1); // [ 'H', 'e', 'l', 'l', 'o' ]
+
+  // 유사 배열 객체를 새로운 배열을 변환하여 반환한다.
+  const arr2 = Array.from({ length: 2, 0: 'a', 1: 'b' });
+  console.log(arr2); // [ 'a', 'b' ]
+  console.log({ length: 2, 0: 'a', 1: 'b' });
+
+  // Array.from의 두번째 매개변수에게 배열의 모든 요소에 대해 호출할 함수를 전달할 수 있다.
+  // 이 함수는 첫번째 매개변수에게 전달된 인수로 생성된 배열의 모든 요소를 인수로 전달받아 호출된다.
+  const arr3 = Array.from({ 0: 'a', 1: 'b' }, function (v, i) {
+    return v;
+  });
+  console.log(arr3); // [ 0, 1, 2, 3, 4 ]
+
+  const arr = [1, 2, 3, 4];
+  var a = arr.join();
+  console.log(a);
+  console.log(a.split(','));
+  var a = arr.join('');
+  console.log(a);
+  var a = ' 1234';
+  console.log(a.split(''));
+
+  const items = ['a', 'b', 'c'];
+
+  // items[0]부터 items[1] 이전(items[1] 미포함)까지 반환
+  let res = items.slice(0, 1);
+  console.log(res); // [ 'a' ]
+
+  // items[1]부터 items[2] 이전(items[2] 미포함)까지 반환
+  res = items.slice(1, 2);
+  console.log(res); // [ 'b' ]
+
+  // items[1]부터 이후의 모든 요소 반환
+  res = items.slice(1);
+  console.log(res); // [ 'b', 'c' ]
+
+  // 인자가 음수인 경우 배열의 끝에서 요소를 반환
+  res = items.slice(-1);
+  console.log(res); // [ 'c' ]
+</script>

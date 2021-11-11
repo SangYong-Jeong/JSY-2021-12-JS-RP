@@ -1,0 +1,37 @@
+<script>
+  const arr = [1, 2, 3];
+
+  // 원본 배열 arr의 새로운 복사본을 생성한다.
+  const copy = arr.slice();
+  console.log(copy, copy === arr); // [ 1, 2, 3 ] false
+  arr[0] = 2;
+  console.log(arr);
+  console.log(copy);
+
+  const todos = [
+    { id: 1, content: 'HTML', completed: false },
+    { id: 2, content: 'CSS', completed: true },
+    { id: 3, content: 'Javascript', completed: false },
+  ];
+
+  // shallow copy
+  const _todos = todos.slice();
+  // const _todos = [...todos];
+  console.log(_todos === todos); // false
+
+  // 배열의 요소는 같다. 즉, 얕은 복사되었다.
+  console.log(_todos[0] === todos[0]); // true
+
+  todos[0].id = 2;
+  console.log(todos);
+  console.log(_todos);
+
+  let obj1 = { a: 0, b: { c: 0 } };
+  let obj2 = Object.assign({}, obj1);
+  console.log(obj1);
+  console.log(obj2);
+  obj1.b.c = 1;
+  obj2.b = 'hi';
+  console.log(obj1);
+  console.log(obj2);
+</script>
