@@ -1,0 +1,26 @@
+<script>
+  const arr = [
+    {
+      name: 'hi',
+    },
+    {
+      name: 'hi2',
+    },
+    {
+      name: 'hi3',
+    },
+  ];
+  const a = arr.map((v) => {
+    v.name = '123';
+    return v;
+  });
+  console.log(arr);
+  console.log(a);
+  // 맵에 객체 넣고 shallow copy test -> shallow copy 맞음!!!
+  a[0].name = '1234';
+  console.log(arr);
+  console.log(a);
+  arr[0].name = 'dddd';
+  console.log(arr);
+  console.log(a);
+</script>
