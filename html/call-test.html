@@ -1,0 +1,64 @@
+<script>
+  Array.prototype.myForEach = function (f) {
+    // 첫번재 매개변수에 함수가 전달되었는지 확인
+    // console.log((function(){}).toString()); // function(){}
+    // console.log(Object.prototype.toString.call(function(){})); // [object Function]
+    // poiemaweb.com/js-type-check 참고
+    if (!f || {}.toString.call(f) !== '[object Function]') {
+      throw new TypeError(f + ' is not a function.');
+    }
+
+    for (let i = 0; i < this.length; i++) {
+      // 배열 요소의 값, 요소 인덱스, forEach 메소드를 호출한 배열, 즉 this를 매개변수에 전달하고 콜백 함수 호출
+      f(this[i], i, this);
+    }
+  };
+
+  let total = 0;
+  let arr = [0, 1, 2, 3];
+  arr.myForEach(function (item, index, array) {
+    console.log(`[${index}]: ${item} of [${array}]`);
+    total += item;
+    item = 'hi';
+    console.log(array[index]);
+  });
+
+  console.log('Total: ', total);
+  console.log(arr);
+
+  const numbers = [1, 4, 9];
+  const roots = numbers.map(function (item) {
+    return Math.sqrt(item);
+  });
+  const roots2 = numbers.map(Math.sqrt);
+  console.log(roots);
+  console.log(roots2);
+  console.log(numbers);
+
+  function Prefixer(prefix) {
+    this.prefix = prefix;
+  }
+  Prefixer.prototype.prefixArray = function (arr) {
+    return arr.map(function (x) {
+      console.log(this);
+      return this.prefix + x;
+    }, this);
+  };
+
+  const pre = new Prefixer('-webkit-');
+  console.log(pre);
+  const preArr = pre.prefixArray(['linear-gradient', 'border-radius']);
+  console.log(preArr);
+
+  const result = [1, 2, 3, 4, 5].filter(function (item, index, self) {
+    console.log(`[${index}] = ${item}`);
+    return item % 2; // 홀수만을 필터링한다 (1은 true로 평가된다)
+  });
+
+  console.log(result); // [ 1, 3, 5 ]
+  var ac = [1, 2, 3, 4];
+  var acc = ac.filter(function (v) {
+    return false;
+  });
+  console.log(acc);
+</script>

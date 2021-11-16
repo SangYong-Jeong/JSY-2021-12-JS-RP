@@ -1,30 +1,28 @@
-<script>
-  // 함수를 인자로 전달받고 함수를 반환하는 고차 함수
-  function makeCounter(predicate) {
-    // 자유 변수. num의 상태는 유지되어야 한다.
-    let num = 0;
-    // 클로저. num의 상태를 유지한다.
-    return function () {
-      // predicate는 자유 변수 num의 상태를 변화시킨다.
-      num = predicate(num);
-      return num;
-    };
-  }
+<!DOCTYPE html>
+<html>
+  <body>
+    <p>전역 변수를 사용한 Counting</p>
+    <button id="inclease">+</button>
+    <p id="count">0</p>
+    <script>
+      var incleaseBtn = document.getElementById('inclease');
+      var count = document.getElementById('count');
 
-  // 보조 함수
-  function increase(n) {
-    return ++n;
-  }
+      // 카운트 상태를 유지하기 위한 전역 변수
+      var counter = 0;
 
-  // 보조 함수
-  function decrease(n) {
-    return --n;
-  }
+      function increase() {
+        return ++counter;
+      }
 
-  // makeCounter는 함수를 인수로 전달받는다. 그리고 클로저를 반환한다.
-  const increaser = makeCounter(increase);
-  console.log(increaser()); // 1
-  console.dir(increaser);
-  // console.log(increaser()); // 2
-  // console.dir(increaser);
-</script>
+      incleaseBtn.onclick = function () {
+        count.innerHTML = increase();
+        console.log(counter);
+      };
+
+      var arr = [];
+      arr[0] = 'hi';
+      console.log(arr);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+<script>
+  var points = [40, 100, 1, 5, 2, 25, 10];
+  points.sort(function (a, b) {
+    // 뒤에 있는게 a로 앞에 있는게 b로
+    // return 값이 > 0 인 경우 -> b, a
+    // return 값이 < 0 인 경우 -> a, b
+    console.log(a);
+    console.log(b);
+    console.log(a - b);
+    return a - b;
+  });
+  console.log(points);
+
+  var points = [40, 100, 1, 5, 2, 25, 10];
+  console.clear();
+  points.sort(function (a, b) {
+    console.log(a);
+    console.log(b);
+    return b - a;
+  });
+  console.log(points);
+
+  const todos = [
+    { id: 4, content: 'JavaScript' },
+    { id: 1, content: 'HTML' },
+    { id: 2, content: 'CSS' },
+  ];
+
+  function compare(key) {
+    return function (a, b) {
+      return a[key] > b[key] ? 1 : a[key] < b[key] ? -1 : 0;
+    };
+  }
+
+  // id를 기준으로 정렬
+  todos.sort(compare('id'));
+  console.log(todos);
+
+  todos.sort(compare('content'));
+  console.log(todos);
+
+  const numbers = [1, 2, 3];
+  let pows = [];
+  for (let i = 0; i < numbers.length; i++) {
+    pows.push(numbers[i] ** 2);
+  }
+  console.log(pows);
+
+  numbers.forEach(function (v) {
+    v = 'hi';
+  });
+  console.log(numbers);
+</script>

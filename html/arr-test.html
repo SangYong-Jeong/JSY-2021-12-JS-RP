@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../js/jquery.min.js"></script>
+  </head>
+  <body>
+    <form action="" name="test">
+      <input type="file" name="file" class="file" />
+      <button>전송버튼</button>
+    </form>
+    <script>
+      $('form[name="test"]').submit(onTest);
+      function onTest(e) {
+        e.preventDefault();
+        console.log(document.test.file.value);
+      }
+    </script>
+  </body>
+</html>

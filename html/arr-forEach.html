@@ -1,0 +1,43 @@
+<script>
+  /* const numbers = [1, 3, 5, 7, 9];
+  let total = 0;
+
+  numbers.forEach(function (item, index, self) {
+    console.log(`numbers[${index}] = ${item}`);
+    total += item;
+  });
+
+  console.log(total); */
+
+  const numbers = [1, 2, 3, 4];
+  numbers.forEach(function (item, index, self) {
+    self[index] = Math.pow(item, 2);
+  });
+  console.log(numbers);
+  numbers.forEach(function (item, index, self) {
+    self[0] = 'hi';
+  });
+
+  console.log(numbers);
+
+  const arr = [{ name: 'hi' }, { name: 'hi2' }, { name: 'hi3' }];
+  arr.forEach(function (item, index, self) {
+    item.name = 'kkk';
+  });
+
+  console.log(arr); // reference는 역시 변경 가능 (because of shallow copy)
+
+  function Square() {
+    this.array = [];
+  }
+  console.clear();
+
+  Square.prototype.multiply = function (arr) {
+    arr.forEach((item) => this.array.push(item * item)); // 렉시컬 스코프
+  };
+
+  const square = new Square();
+  square.multiply([1, 2, 3]);
+  console.log(square);
+  console.log(square.array);
+</script>
