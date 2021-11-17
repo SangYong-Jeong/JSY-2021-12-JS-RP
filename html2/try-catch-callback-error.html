@@ -1,0 +1,54 @@
+<script>
+  /* try {
+        setTimeout(function () {
+          throw new Error('에러입니다.');
+        }, 1000);
+      } catch (err) {
+        console.log(err);
+      } */
+
+  /* try {
+        const a = function () {
+          throw new Error('에러입니다.');
+        };
+        a();
+      } catch (err) {
+        console.log(err);
+      } */
+
+  const arr = [1, 2, 3, 4, 5];
+  arr.splice(-1, 1);
+  console.log(arr); // arr = > [1,2,3,4]
+  arr.splice(-2, 1);
+  console.log(arr); // arr = > [1,2,4]
+
+  const abc = new Array(2);
+  console.log(abc); // 요소 x -> length = 2
+
+  for (let i of [1, 2, 3]) {
+    try {
+      if (i === 3) {
+        break;
+      }
+    } finally {
+      console.log(`현재 i의 값: ${i}`);
+    }
+  }
+
+  // error x -> (try -> finally)
+  // error o -> (try -> catch -> finally)
+  try {
+    console.log('try');
+    new Array(-1); // RangeError: Invalid array length
+  } catch (e) {
+    console.log('catch');
+  } finally {
+    console.log('finally');
+  } // try -> catch -> finally 순으로만 code 작성 가능
+
+  // console.log(prompt('하이')); -> prompt에 입력한 값이 prompt 함수의 리턴값
+  const even = parseInt(prompt('짝수를 입력하세요'));
+  if (even % 2 !== 0) {
+    throw new Error('짝수가 아닙니다.');
+  }
+</script>

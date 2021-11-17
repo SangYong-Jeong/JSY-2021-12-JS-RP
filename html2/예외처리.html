@@ -1,0 +1,67 @@
+<script>
+  // 동기식 코드에서의 예외 처리
+  class MyError extends Error {
+    constructor(value, ...params) {
+      super(...params);
+      this.value = value;
+      this.name = 'MyError';
+    }
+  }
+
+  /* try {
+    const even = parseInt(prompt('짝수를 입력하세요.'));
+    if (even % 2 !== 0) {
+      throw new MyError(even, '짝수가 아닙니다.');
+    }
+  } catch (err) {
+    if (err instanceof MyError) {
+      console.log(err.value);
+      console.log(err.name);
+      console.log(err);
+    }
+  } */
+  const a = 'hi';
+  try {
+    setTimeout(() => {
+      console.log(a);
+      throw new Error('에러!'); // 전역 context는 그대로 있다. but 비동기로 callback 함수가 실행 되었을 때 try catch 구문 안에서 실행된게 아닌걸로 보인다.
+    });
+  } catch (err) {
+    console.log(err);
+  }
+
+  const p = new Promise((resolve, reject) => {
+    const even = parseInt(prompt('짝수를 입력하세요.'));
+    if (even % 2 !== 0) {
+      throw new Error('짝수가 아닙니다.');
+    } else {
+      resolve(even);
+    }
+  });
+  p.then(
+    (even) => {
+      return '짝수입니다.';
+    },
+    (err) => {
+      return err.message;
+    }
+  ).then(alert);
+
+  async function hello() {
+    throw new Error('이것은 에러에요.');
+  }
+  console.log(hello());
+  console.log(
+    new Promise((resolve, reject) => {
+      console.log('promise');
+    })
+  );
+
+  async function thisThrows() {
+    throw new Error('Thrown from thisThrows()');
+  }
+
+  thisThrows()
+    .catch(console.log)
+    .then(() => console.log('We do clean up here'));
+</script>

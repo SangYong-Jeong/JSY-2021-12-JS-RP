@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" id="myInput" onchange="myFunction()" />
+    <input type="text" id="myInput2" oninput="myFunction2()" />
+    <select name="mySelect" id="mySelect" oninput="myFunction3();">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+    </select>
+    <input type="radio" name="myRadio" id="myRadio" onchange="myFunction4()" />
+    <label for="myRadio">hi</label>
+    <input type="radio" name="myRadio" id="myRadio2" onchange="myFunction5()" />
+    <label for="myRadio2">hi2</label>
+    <p id="demo"></p>
+    <p id="demo2"></p>
+    <p id="demo3"></p>
+    <p id="demo4"></p>
+    <p id="demo5"></p>
+    <script>
+      function myFunction() {
+        var x = document.getElementById('myInput').value;
+        document.getElementById('demo').innerHTML = 'You wrote ' + x;
+      }
+      function myFunction2() {
+        var x = document.getElementById('myInput2').value;
+        document.getElementById('demo2').innerHTML = 'Yout wrtoe ' + x;
+      }
+      function myFunction3() {
+        var x = document.getElementById('mySelect').value;
+        document.getElementById('demo3').innerHTML = 'This Number is ' + x;
+      }
+      function myFunction4() {
+        console.log('4');
+        var x = document.getElementById('myRadio').value;
+        console.log(x);
+        document.getElementById('demo4').innerHTML = 'This Number is ' + x;
+      }
+      function myFunction5() {
+        console.log('5');
+        var x = document.getElementById('myRadio2').value;
+        console.log(x);
+        document.getElementById('demo5').innerHTML = 'This Number is ' + x;
+      }
+
+      // onchange ->(input[type="text"]) focus에서 blur 되었을 때 발동
+      // oninput -> input[type="text"], textarea 의 value 또는 text node가 변경 되었을 때
+      // 특정 type에서만 작동되는건 아닌 것 같다.
+      // React에서 onChange는 JS의 onInput이벤트핸들러와 동일하다고 생각하면 될 것 같다.
+    </script>
+  </body>
+</html>

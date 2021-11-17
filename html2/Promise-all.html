@@ -1,0 +1,23 @@
+<script>
+  console.log(Promise.all([]));
+  console.log(Promise.all([1, 2]));
+
+  // Promise 객체를 반환하는 함수.
+  function delay(ms) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        console.log(`${ms} 밀리초가 지났습니다.`);
+        resolve();
+      }, ms);
+    });
+  }
+
+  async function main() {
+    await delay(1000);
+    await delay(2000);
+    const result = await Promise.resolve('끝');
+    console.log(result);
+  }
+
+  main();
+</script>

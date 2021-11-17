@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <button class="myButton">Click me!</button>
+    <button class="foo">foo</button>
+    <script>
+      document
+        .querySelector('.myButton')
+        .addEventListener('click', function () {
+          alert('Clicked!');
+        });
+      function func1() {
+        console.log('func1');
+        func2();
+      }
+
+      function func2() {
+        const elem = document.querySelector('.foo');
+
+        elem.addEventListener('click', function () {
+          this.style.backgroundColor = 'indigo';
+          console.log('func2');
+        });
+
+        func3();
+      }
+
+      function func3() {
+        console.log('func3');
+      }
+
+      func1();
+
+      // 자식 요소에서 발생한 이벤트가 부모 요소로 전파되는 것은 버블링
+      // 자식 요소에서 발생한 이벤트가 부모 요소부터 시작하여 이벤트를 발생시킨 자식 요소까지 도달하는 것은 캡처링
+    </script>
+  </body>
+</html>

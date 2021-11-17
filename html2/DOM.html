@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .red {
+        color: #ff0000;
+      }
+      .blue {
+        color: #0000ff;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1>Cities</h1>
+      <h2 class="green yellow">hihi</h2>
+      <ul>
+        <li id="one" class="red">Seoul</li>
+        <li id="two" class="red">London</li>
+        <li id="three" class="red">Newyork</li>
+        <li id="four">Tokyo</li>
+      </ul>
+    </div>
+    <script>
+      const h2 = document.querySelector('h2');
+      console.log(h2.className);
+      h2.className = 'red blue';
+      console.log(h2.className);
+      const elems = document.querySelectorAll('li');
+
+      // className
+      [...elems].forEach((elem) => {
+        // class 어트리뷰트 값을 취득하여 확인
+        if (elem.className === 'red') {
+          // class 어트리뷰트 값을 변경한다.
+          elem.className = 'blue';
+        }
+      });
+
+      // classList
+      [...elems].forEach((elem) => {
+        // class 어트리뷰트 값 확인
+        if (elem.classList.contains('blue')) {
+          // class 어트리뷰트 값 변경한다.
+          elem.classList.replace('blue', 'red');
+        }
+      });
+    </script>
+  </body>
+</html>

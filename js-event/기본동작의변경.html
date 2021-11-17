@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div>
+      <a href="http://www.google.com">go</a>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
+    <script>
+      // within jQuery
+      // $('a').click(function (e) {
+      //   e.preventDefault(); // OK
+      // });
+
+      // $('a').click(function () {
+      //   return false; // OK --> e.preventDefault() & e.stopPropagation().
+      // });
+      document.querySelector('body').addEventListener('click', function () {
+        console.log('body');
+      });
+      // pure js
+      document.querySelector('a').addEventListener('click', function (e) {
+        e.preventDefault(); // OK
+        e.stopPropagation(); // OK
+        // return false; // NG!!!!!
+      });
+    </script>
+  </body>
+</html>

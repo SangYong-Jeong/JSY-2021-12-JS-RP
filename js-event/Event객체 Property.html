@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      html,
+      body {
+        height: 100%;
+      }
+      div {
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <button>배경색 변경</button>
+    </div>
+    <script>
+      function bluify(e) {
+        // this: 이벤트에 바인딩된 DOM 요소(div 요소)
+        console.log('this: ', this);
+        // target: 실제로 이벤트를 발생시킨 요소(button 요소 또는 div 요소)
+        console.log('e.target:', e.target);
+        // currentTarget: 이벤트에 바인딩된 DOM 요소(div 요소)
+        console.log('e.currentTarget: ', e.currentTarget);
+
+        // 언제나 true
+        console.log(this === e.currentTarget);
+        // currentTarget과 target이 같은 객체일 때 true
+        console.log(this === e.target);
+
+        // click 이벤트가 발생하면 이벤트를 발생시킨 요소(target)과는 상관없이 this(이벤트에 바인딩된 div 요소)의 배경색이 변경된다.
+        this.style.backgroundColor = '#A5D9F3';
+      }
+
+      // div 요소에 이벤트 핸들러가 바인딩되어 있다.
+      // 자식 요소인 button이 발생시킨 이벤트가 버블링되어 div 요소에도 전파된다.
+      // 따라서 div 요소에 이벤트 핸들러가 바인딩되어 있으면 자식 요소인 button이 발생시킨 이벤트를 div 요소에서도 핸들링할 수 있다.
+      document.querySelector('div').addEventListener('click', bluify);
+    </script>
+  </body>
+</html>

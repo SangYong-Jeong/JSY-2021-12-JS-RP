@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <a href="poiemaweb.com">Go to poiemaweb.com</a>
+    <script>
+      const elem = document.querySelector('a');
+
+      elem.addEventListener('click', function (e) {
+        console.log(e.cancelable);
+
+        // 기본 동작을 중단시킨다.
+        e.preventDefault();
+      });
+
+      // Event.eventPhase
+      /* 
+      0 -> 이벤트 없음
+      1 -> 캡쳐링 단계
+      2 -> 타깃 (이벤트를 발생시킨 DOM요소)
+      3 -> 버블링 단계
+      */
+    </script>
+  </body>
+</html>

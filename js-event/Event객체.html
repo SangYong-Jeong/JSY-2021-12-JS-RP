@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <em class="message"></em>
+    <script>
+      function showCoords(e, msg) {
+        msg.innerHTML =
+          'clientX value: ' +
+          e.clientX +
+          '<br>' +
+          'clientY value: ' +
+          e.clientY;
+      }
+
+      const msg = document.querySelector('.message');
+
+      addEventListener('click', function (e) {
+        showCoords(e, msg);
+      });
+    </script>
+  </body>
+</html>

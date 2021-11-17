@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <p>키를 입력하세요</p>
+    <em class="message"></em>
+    <script>
+      const body = document.querySelector('body');
+
+      function getEventType(e) {
+        console.log(e);
+        document.querySelector(
+          '.message'
+        ).innerHTML = `${e.type} : ${e.keyCode}`;
+      }
+
+      body.addEventListener('keydown', getEventType);
+      body.addEventListener('keyup', getEventType);
+    </script>
+  </body>
+</html>

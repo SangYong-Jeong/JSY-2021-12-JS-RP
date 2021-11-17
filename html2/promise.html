@@ -1,0 +1,67 @@
+<script>
+  // Promise 객체를 반환하는 함수
+  function delay(ms) {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        console.log(`${ms} 밀리초가 지났습니다.`);
+        resolve();
+      }, ms);
+    });
+  }
+
+  delay(1000)
+    .then((resolve) => {
+      console.log(resolve);
+      delay(2000);
+    })
+    .then(() => Promise.resolve('끝'))
+    .then(console.log);
+
+  console.log('시작');
+
+  console.log(Promise.resolve('이건 뭥미?'));
+  console.log(console.log);
+  console.dir(console.log);
+
+  const trees = new Array(1);
+  console.log(trees);
+
+  const API_URL = 'https://api.github.com';
+  const starCount = {};
+  const axios = require('axios');
+
+  // 1. Github에 공개되어있는 저장소 중, 언어가 JavaScript이고 별표를 가장 많이 받은 저장소를 불러온다.
+  axios
+    .get(
+      `${API_URL}/search/repositories?q=language:javascript&sort=stars&per_page=1`
+    )
+    // 2. 위 저장소에 가장 많이 기여한 기여자 5명의 정보를 불러온다.
+    .then((res) =>
+      axios.get(
+        `${API_URL}/repos/${res.data.items[0].full_name}/contributors?per_page=5`
+      )
+    )
+    // 3. 해당 기여자들이 최근에 Github에서 별표를 한 저장소를 각각 10개씩 불러온다.
+    .then((res) => {
+      const ps = res.data.map((user) =>
+        axios.get(`${API_URL}/users/${user.login}/starred?per_page=10`)
+      );
+      return Promise.all(ps);
+    })
+    .then((ress) => Promise.all(ress.map((r) => r.data)))
+    // 4. 불러온 저장소를 모두 모아, 개수를 센 후 저장소의 이름을 개수와 함께 출력한다.
+    .then((repoArrs) => {
+      for (let repoArr of repoArrs) {
+        for (let repo of repoArr) {
+          if (repo.full_name in starCount) {
+            starCount[repo.full_name]++;
+          } else {
+            starCount[repo.full_name] = 1;
+          }
+        }
+      }
+      console.log(starCount);
+    });
+
+  console.log('fetching...');
+</script>

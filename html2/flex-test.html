@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        display: flex;
+      }
+      .red {
+        background-color: red;
+        /* height: 100%; 부모요소의 height의 100%이므로 부모안에 요소가 얼마 없어서 height가 낮으므로 100vh와 다르게 화면을 꽉 채우지 않는다. */
+      }
+      .blue {
+        background-color: blue;
+      }
+      .green {
+        background-color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="red">hi</div>
+      <div class="blue">hi2</div>
+      <div class="green">hi3</div>
+    </div>
+  </body>
+</html>
