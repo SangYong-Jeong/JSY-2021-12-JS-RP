@@ -1,0 +1,22 @@
+<script>
+  const o = { name: 'Lee', gender: 'male', age: 20 };
+
+  // 객체 => JSON 형식의 문자열
+  const strObject = JSON.stringify(o);
+  console.log(typeof strObject, strObject);
+  // string {"name":"Lee","gender":"male","age":20}
+
+  const arr = [1, 5, 'false'];
+
+  // 배열 객체 => 문자열
+  const strArray = JSON.stringify(arr);
+  console.log(typeof strArray, strArray); // string [1,5,"false"]
+
+  // JSON 형식의 문자열 => 객체
+  const obj = JSON.parse(strObject);
+  console.log(typeof obj, obj); // object { name: 'Lee', gender: 'male' }
+
+  // 문자열 => 배열 객체
+  const objArray = JSON.parse(strArray);
+  console.log(typeof objArray, objArray); // object [1, 5, "false"]
+</script>

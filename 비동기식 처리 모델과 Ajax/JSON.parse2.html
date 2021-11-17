@@ -1,0 +1,17 @@
+<script>
+  const todos = [
+    { id: 1, content: 'HTML', completed: true },
+    { id: 2, content: 'CSS', completed: true },
+    { id: 3, content: 'JavaScript', completed: false },
+  ];
+
+  // 배열 => JSON 형식의 문자열
+  const str = JSON.stringify(todos);
+  console.log(typeof str, str);
+
+  // JSON 형식의 문자열 => 배열
+  const parsed = JSON.parse(str);
+  console.log(typeof parsed, parsed);
+
+  // 배열이 JSON 형식의 문자열로 변환되어 있는 경우 JSON.parse는 문자열을 배열 객체로 변환한다. 배열의 요소가 객체인 경우 배열의 요소까지 객체로 변환한다.
+</script>

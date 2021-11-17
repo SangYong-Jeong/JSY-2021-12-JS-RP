@@ -1,0 +1,18 @@
+<script>
+  if (window.DeviceOrientationEvent) {
+    console.log('가능!');
+    // Our browser supports DeviceOrientation
+  } else {
+    console.log('Sorry, your browser doesnt support Device Orientation');
+  }
+  window.addEventListener('deviceorientation', handleOrientation, false);
+
+  function handleOrientation(event) {
+    var absolute = event.absolute;
+    var alpha = event.alpha;
+    var beta = event.beta;
+    var gamma = event.gamma;
+
+    // Do stuff with the new orientation data
+  }
+</script>
