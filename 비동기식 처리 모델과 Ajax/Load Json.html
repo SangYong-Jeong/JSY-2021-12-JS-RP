@@ -1,4 +1,3 @@
-<!-- 루트 폴더(webserver-express/public)/loadhtml.html -->
 <!DOCTYPE html>
 <html>
   <head>
@@ -9,24 +8,38 @@
     <div id="content"></div>
 
     <script>
-      console.dir(XMLHttpRequest);
-      // 웹서버는 브라우저와 같은 클라이언트로부터 HTTP 요청을 받아들이고 HTML 문서와 같은 웹 페이지를 반환하는 컴퓨터 프로그램이다.
       // XMLHttpRequest 객체의 생성
-      const xhr = new XMLHttpRequest();
+      var xhr = new XMLHttpRequest();
+
       // 비동기 방식으로 Request를 오픈한다
-      xhr.open('GET', 'https://jsonplaceholder.typicode.com/posts');
+      xhr.open('GET', 'json/tour.json');
       // Request를 전송한다
       xhr.send();
 
-      // Event Handler
       xhr.onreadystatechange = function () {
         // 서버 응답 완료 && 정상 응답
         if (xhr.readyState !== XMLHttpRequest.DONE) return;
 
         if (xhr.status === 200) {
           console.log(xhr.responseText);
+
+          // Deserializing (String → Object)
           responseObject = JSON.parse(xhr.responseText);
-          document.getElementById('content').innerHTML = responseObject;
+
+          // JSON → HTML String
+          let newContent = '<div id="tours"><h1>Users Information</h1><ul>';
+
+          responseObject.tours.forEach((user) => {
+            newContent += `<li class="${user.id} tour">
+                <h2>${user.title}</h2>
+                <span class="details">${user.body}</span>
+                <button class="book">Book Now</button>
+              </li>`;
+          });
+
+          newContent += '</ul></div>';
+
+          document.getElementById('content').innerHTML = newContent;
         } else {
           console.log(`[${xhr.status}] : ${xhr.statusText}`);
         }

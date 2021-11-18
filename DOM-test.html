@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>style 프로퍼티 값 취득</title>
+    <style>
+      .box {
+        width: 100px;
+        height: 50px;
+        background-color: red;
+        border: 1px solid black;
+      }
+      .box2 {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+    <div class="box2"></div>
+    <script>
+      const box = document.querySelector('.box');
+      const box2 = document.querySelector('.box2');
+      console.dir(box2);
+      console.dir(box2.style);
+      console.log(getComputedStyle(box2));
+      const width = getStyle(box, 'width');
+      const height = getStyle(box, 'height');
+      const backgroundColor = getStyle(box, 'background-color');
+      const border = getStyle(box, 'border');
+
+      console.log('width: ' + width);
+      console.log('height: ' + height);
+      console.log('backgroundColor: ' + backgroundColor);
+      console.log('border: ' + border);
+
+      /**
+       * 요소에 적용된 CSS 프로퍼티를 반환한다.
+       * @param {HTTPElement} elem - 대상 요소 노드.
+       * @param {string} prop - 대상 CSS 프로퍼티.
+       * @returns {string} CSS 프로퍼티의 값.
+       */
+      function getStyle(elem, prop) {
+        return window.getComputedStyle(elem, null).getPropertyValue(prop);
+      }
+    </script>
+  </body>
+</html>
