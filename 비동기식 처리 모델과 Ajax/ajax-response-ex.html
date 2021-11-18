@@ -1,0 +1,22 @@
+<script>
+  // XMLHttpRequest 객체의 생성
+  var xhr = new XMLHttpRequest();
+  console.log(xhr.readyState);
+  // 비동기 방식으로 Request를 오픈한다
+  xhr.open('GET', 'https://jsonplaceholder.typicode.com/users');
+  console.log(xhr.readyState);
+  // Request를 전송한다
+  xhr.send();
+
+  // XMLHttpRequest.readyState 프로퍼티가 변경(이벤트 발생)될 때마다 콜백함수(이벤트 핸들러)를 호출한다.
+  xhr.onreadystatechange = function (e) {
+    console.log(xhr.readyState);
+    // 이 함수는 Response가 클라이언트에 도달하면 호출된다.
+  };
+  // xhr.readyState
+  // 0 -> UNSENT = XMLHttpRequest.open() 메소드 호출 이전
+  // 1 -> OPEND = XMLHttpRequest.open() 메소드 호출 완료
+  // 2 -> HEADERS_RECEIVED = XMLHttpRequest.send() 메소드 호출 완료 + 응답 헤더만 받은상태
+  // 3 -> LOADING = 서버 응답 중 (XMLHttpRequest.responseText 미완성 상태)
+  // 4 -> DONE = 서버 응답 완료
+</script>
