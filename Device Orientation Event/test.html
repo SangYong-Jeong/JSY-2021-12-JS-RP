@@ -1,0 +1,10 @@
+<script>
+  setTimeout(function () {
+    try {
+      const e = new Error('에러입니다.');
+      throw e;
+    } catch (err) {
+      console.log(err);
+    }
+  }, 1000);
+</script>

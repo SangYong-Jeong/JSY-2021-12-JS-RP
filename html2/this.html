@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>This Test</title>
+  </head>
+  <body>
+    <button id="bt-click1">클릭1</button>
+    <button id="bt-click2">클릭2</button>
+    <button id="bt-click3">클릭3</button>
+    <script>
+      const obj = {
+        name: 'hi',
+        hi() {
+          console.log(this);
+        },
+        hi2: function () {
+          console.log(this);
+        }.bind(this),
+      };
+      // 단축 메소드 선언 시에는 bind(this)가 되지 않는다.
+
+      function Car(_name, _color) {
+        this.name = _name;
+        this.color = _color;
+        this.drive = this.drive.bind(this); // 이렇게 할경우 value에 this는 인스턴스 본인이 drive라는 property가 없으므로 프로토타입 체인으로 계속 올라가면서 drive라는 프로퍼티를 찾은 후 그것은 인스턴스 자신의 property로 갖게된다 거기에 new 연산자를 붙여 호출한 생성자함수안의 this는 인스턴스 자신이라는 것을 이용해 bind(this)로 this가 어디서 호출되든 인스턴스 자신인 drive 인스턴스 메소들를 갖게 된다.
+        this.drive2 = this.drive2.bind(this);
+        // Arrow function 은 bind 메소드가 적용이 되지 않는다.
+      }
+      Car.prototype.drive = function () {
+        console.log(this);
+      };
+      Car.prototype.drive2 = () => {
+        console.log(this);
+      };
+      var car = new Car('붕붕이', 'black');
+      document.getElementById('bt-click1').addEventListener('click', obj.hi);
+      document.getElementById('bt-click2').addEventListener('click', car.drive);
+      document
+        .getElementById('bt-click3')
+        .addEventListener('click', car.drive2);
+
+      /* class Car2 () {
+        a = '1'
+      } */
+      // 클래스 필드는 아직 정식 표준으로 채택된 기능이 아니다!
+      // 이 기능을 구현한 브라우저는 없는 상태 -> 사용하기 위해서는 Babel, TypeScript 등의 트랜스파일러를 통해 일부 기능을 사용할 수 있다.
+      const obb = {
+        [1]: 1,
+      };
+      // 객체의 key 값은 문자열이다!
+      console.log(obb);
+    </script>
+  </body>
+</html>
