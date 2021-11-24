@@ -20,21 +20,46 @@
 
   // yeild로 양방향 통신 가능
 
-  function* gen() {
-    let ask1 = yield '2 + 2 = ?';
+  // function* gen() {
+  //   let ask1 = yield '2 + 2 = ?';
 
-    alert(ask1); // 4
+  //   alert(ask1); // 4
 
-    let ask2 = yield '3 * 3 = ?';
+  //   let ask2 = yield '3 * 3 = ?';
 
-    alert(ask2); // 9
+  //   alert(ask2); // 9
+  // }
+
+  // let generator = gen();
+
+  // console.log(generator.next().value); // "2 + 2 = ?"
+
+  // console.log(generator.next(4).value); // "3 * 3 = ?"
+
+  // console.log(generator.next(9).done); // true
+
+  function* watchGenerator() {
+    console.log('모니터링 중...');
+    let prevAction = null;
+    while (true) {
+      const action = yield;
+      console.log('이전 액션: ', prevAction);
+      prevAction = action;
+      if (action.type === 'HELLO') {
+        console.log('안녕하세요!');
+      }
+    }
   }
+  const watch = watchGenerator();
 
-  let generator = gen();
-
-  console.log(generator.next().value); // "2 + 2 = ?"
-
-  console.log(generator.next(4).value); // "3 * 3 = ?"
-
-  console.log(generator.next(9).done); // true
+  watch.next();
+  // 모니터링 중..
+  // { value: undefined, done: false }
+  watch.next({ type: 'TEST' });
+  // 이전 액션: null
+  // { value: undefined, done: false }
+  watch.next({ type: 'HELLO' });
+  // 이전 액션: {type: 'TEST'}
+  // 안녕하세요
+  // {value: undefined, done: false}
 </script>
