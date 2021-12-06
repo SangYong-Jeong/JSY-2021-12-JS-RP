@@ -1,4 +1,9 @@
 <script>
-  console.log([...Array(40).keys()]);
-  console.dir(Array(40).keys());
+  const props = { name: 'hi', username: 'dd', number: 1 };
+
+  function hi({ name, ...rest }) {
+    console.log({ ...rest });
+  }
+
+  hi(props);
 </script>
